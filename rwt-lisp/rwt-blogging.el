@@ -1,3 +1,8 @@
+;;   -*- lexical-binding: t; -*-
+
+;; ----------------------------------------------------------------------
+;; blogging helper functions
+;; ----------------------------------------------------------------------
 
 (defun rwt/blog-yaml ()
   "Adds a blank YAML block suitable for a jekyll blog post to the
