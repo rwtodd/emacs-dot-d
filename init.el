@@ -1,25 +1,7 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-;; figure out a good font based on the ones installed... go for 11pt
-;; font by default.
-(let ((ffs (font-family-list)))
-  (cond
-   ((member "Cascadia Mono" ffs) (set-frame-font "Cascadia Mono"))
-   ((member "Go Mono" ffs) (set-frame-font "Go Mono"))
-   ((member "Source Code Pro" ffs) (set-frame-font "Source Code Pro"))
-   ((member "Consolas" ffs) (set-frame-font "Consolas"))))
-(set-face-attribute 'default nil :height 110)
-
 (package-initialize)
-
-(setq inhibit-startup-screen t) ; turn off the start screen
-(tool-bar-mode -1)              ; turn off the toolbar
-(prefer-coding-system 'utf-8)   ; unicode, baby
-
-;; allow me to use disabled functions
-(put 'set-goal-column 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -48,12 +30,33 @@
 
 ;; load my custom codez...
 (add-to-list 'load-path "~/.emacs.d/rwt-lisp")
-
 (require 'rwt-utils)
-(global-set-key (kbd "C-, d i") #'rwt/delete-around-point)
-
-;; some jekyll blogging helpers ~~~~~~~~
 (require 'rwt-blogging)
 (setq rwt/blog-base "~/src/gh_pages")
+
+;; figure out a good font based on the ones installed... go for 11pt
+;; font by default.
+(let ((ffs (font-family-list)))
+  (cond
+   ((member "Cascadia Mono" ffs) (set-frame-font "Cascadia Mono"))
+   ((member "Go Mono" ffs) (set-frame-font "Go Mono"))
+   ((member "Source Code Pro" ffs) (set-frame-font "Source Code Pro"))
+   ((member "Consolas" ffs) (set-frame-font "Consolas"))))
+(set-face-attribute 'default nil :height 110)
+
+;; I like auto-fill mode...
+(add-hook 'markdown-mode-hook #'auto-fill-mode)
+
+;; allow me to use disabled functions
+(put 'set-goal-column 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
+(setq inhibit-startup-screen t) ; turn off the start screen
+(tool-bar-mode -1)              ; turn off the toolbar
+(prefer-coding-system 'utf-8)   ; unicode, baby
+(blink-cursor-mode 0)           ; don't blink the cursor
+
+;; set global keys for functions i use a lot
+(global-set-key (kbd "C-, d i") #'rwt/delete-around-point)
 (global-set-key (kbd "C-, b d") #'rwt/blog-draft)
 
