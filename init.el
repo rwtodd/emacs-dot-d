@@ -19,7 +19,7 @@
  '(hl-sexp-background-color "#efebe9")
  '(package-selected-packages
    (quote
-    (dracula-theme leuven-theme edit-indirect cider markdown-mode))))
+    (dracula-theme edit-indirect cider markdown-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -32,7 +32,7 @@
 (add-to-list 'load-path "~/.emacs.d/rwt-lisp")
 (require 'rwt-utils)
 (require 'rwt-blogging)
-(setq rwt/blog-base "~/src/gh_pages")
+(setq rwt/blog-base "J:/ghio_blog")
 
 ;; figure out a good font based on the ones installed... go for 11pt
 ;; font by default.
@@ -59,4 +59,4 @@
 ;; set global keys for functions i use a lot
 (global-set-key (kbd "C-, d i") #'rwt/delete-around-point)
 (global-set-key (kbd "C-, b d") #'rwt/blog-draft)
-
+(global-set-key (kbd "C-, b o") #'rwt/blog-open)
