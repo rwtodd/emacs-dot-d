@@ -17,9 +17,7 @@
    (quote
     ("dcdd1471fde79899ae47152d090e3551b889edf4b46f00df36d653adc2bf550d" "68d8ceaedfb6bdd2909f34b8b51ceb96d7a43f25310a55c701811f427e9de3a3" default)))
  '(hl-sexp-background-color "#efebe9")
- '(package-selected-packages
-   (quote
-    (dracula-theme edit-indirect cider markdown-mode))))
+ '(package-selected-packages (quote (slime dracula-theme edit-indirect markdown-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -32,7 +30,7 @@
 (add-to-list 'load-path "~/.emacs.d/rwt-lisp")
 (require 'rwt-utils)
 (require 'rwt-blogging)
-(setq rwt/blog-base "J:/ghio_blog")
+(setq rwt/blog-base "~/src/ghio_pages")
 
 ;; figure out a good font based on the ones installed... go for 11pt
 ;; font by default.
@@ -43,6 +41,11 @@
    ((member "Source Code Pro" ffs) (set-frame-font "Source Code Pro"))
    ((member "Consolas" ffs) (set-frame-font "Consolas"))))
 (set-face-attribute 'default nil :height 110)
+
+;; I tend to use sbcl
+(setq slime-lisp-implementations
+      '((sbcl ("/usr/bin/sbcl"))
+	(ecl  ("~/.local/bin/ecl"))))
 
 ;; I like auto-fill mode...
 (add-hook 'markdown-mode-hook #'auto-fill-mode)
