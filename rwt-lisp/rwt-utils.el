@@ -48,4 +48,19 @@
 	  (delete-region start-pt (- (point) (if arg 0 1)))
 	  (goto-char start-pt))))))
 
+(defun rwt/page-menu ()
+  "Runs occur on the page-delimiter, to give a menu of pages."
+  (interactive)
+  (occur page-delimiter))
+
+
+(defun rwt/total-time (shifts)
+  "Given `shifts` as a list of '( ((hh . mm) (hh . mm)) ... ) shifts, add up
+all the fractional hours"
+  (let ((hhmm-to-hours (lambda (tspec) (+ (car tspec) (/ (cdr tspec) 60.0)))))
+    (apply #'+
+	   (mapcar #'(lambda (shift)
+		       (apply #'- (reverse (mapcar hhmm-to-hours shift))))
+		   shifts))))
+
 (provide 'rwt-utils)
